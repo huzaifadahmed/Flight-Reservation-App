@@ -16,11 +16,15 @@ class StripeController extends Controller
     //once payment is processed, user is stored in database and seat is reserved
     public function checkout()
     {
+        /**
+         * 1. Dedicated request class
+         * 2. Refactor logic to an Action class
+         */
         $attributes=request()->validate([
             'flightNumber'=>'required',
             'firstName'=>'required',
             'lastName'=>'required|unique:passengers,lastName',
-            'email'=>'required|email|unique:passengers,email',        
+            'email'=>'required|email|unique:passengers,email',
         ]);
 
 
@@ -53,6 +57,11 @@ class StripeController extends Controller
         ]);
     }
 
+    /**
+     * Move the business logic to Action classes
+     * You can have multiple action classes
+     * Keep your controller methods small
+     */
     public function success()
     {
         $attributes=session()->get('attributes');
