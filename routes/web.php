@@ -20,6 +20,13 @@ use App\Http\Controllers\AdminController;
 |
 */
 
+/**
+ * TODO: clean up your routes file. Use consistency.
+ * If your route only does one thing, create an invokeable controller for it
+ * instead of an anonymous function like the one below for the home view.
+ * Consistency is key.
+ */
+
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -30,6 +37,9 @@ Route::get('/bookflight', function () {
 
 Route::get('/search', [FlightController::class,'index']);
 
+// TODO: you can change this to just /flight/{flight}, and then
+// type-hint the Flight model on the "show" method like you have.
+// e.g. show(Flight $flight). It's more expressive rather than calling it $id.
 Route::get('/flight/{id:flightNumber}', [FlightController::class,'show']);
 
 Route::get('/confirm', [Passengercontroller::class,'index']);
