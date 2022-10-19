@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use App\Http\Requests\LoginAdminRequest;
 
 class LoginController extends Controller
 {
@@ -12,21 +13,19 @@ class LoginController extends Controller
         return view('login.login');
     }
 
-    public function store()
+    public function store(LoginAdminRequest $request)
     {
-        $attributes = request()->validate([
-            'email'=>'required|email',
-            'password'=>'required'
-        ]); 
+        $validated = $request->validated();
 
-        // echo bcrypt('password');
+        //Login credentials: username: hdahmed@ryerson.ca - password: password
         //$2y$10$2y8StiPh.7cbwGlVTRa28uG1wVXe95CpkK6b9qq1esS2JoxgpP0e.
 
-        if(!auth()->attempt($attributes)){
+        if(!auth()->attempt($validated)){
             throw ValidationException::withMessages([
                 'email'=>'Your provided credentials could not be verified.'
             ]);
         }
+        
         session()->regenerate();
 
         return redirect('/')->with('success', 'Welcome Back!');

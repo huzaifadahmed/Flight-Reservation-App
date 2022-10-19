@@ -45,7 +45,7 @@
                             <input type="date" name="fromDate" class="border-2 border-black rounded-md p-1" value="{{old('fromDate')}}">
                             - <input type="date" name="toDate" class="border-2 border-black rounded-md p-1" value="{{old('toDate')}}">
                         </div>
-                        @error('date')
+                        @error('toDate')
                         <p class="text-red-500 text-sm">{{$message}}</p>
                         @enderror
                     </div>
