@@ -67,7 +67,7 @@
                             <input type="date" name="fromDate" class="border-2 border-black rounded-md p-1" value="<?php echo e(old('fromDate')); ?>">
                             - <input type="date" name="toDate" class="border-2 border-black rounded-md p-1" value="<?php echo e(old('toDate')); ?>">
                         </div>
-                        <?php $__errorArgs = ['date'];
+                        <?php $__errorArgs = ['toDate'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
