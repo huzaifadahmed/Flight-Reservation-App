@@ -1,66 +1,51 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+This application was created using the following requirements:
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+Intro
+A new domestic airline in Canada has asked you to build a basic online booking system.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Information
+1. The airline has a fleet of 3 planes. Each plane can carry 144 passengers, including a
+crew of 12.
+2. The airline currently has a hub at Toronto Pearson, and flies to the following cities:
+a. Edmonton
+b. Calgary
+c. Vancouver
+d. Halifax
+e. Whitehorse
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Requirements
+1. Build a basic booking page where users can select their travel dates. Assume that each
+booking must be a round trip.
+a. Things to consider:
+i. The same flight cannot take more people than the plane’s capacity
+ii. The same plane can only be used for one route at a time (e.g. it cannot
+be flying to two different cities at the same time)
+iii. You will need to seed in available dates and plan this out accordingly.
+Typically this would be done through an admin panel where flights can be
+added, but since there is no admin panel, you will need to do this yourself
+2. Tickets for flights are all-inclusive (no extra charges for carry-ons, and only one travel
+class: economy).
+a. This is done for simplicity’s sake so you don’t spend too much time on this
+project, but think about the future that if the requirements change and you now
+need to add a business class, how will this change?
+3. Each ticket has a baseline cost, and the price increases by X% of the base price as the
+dates get closer to the travel date.
+a. For example, someone booking a month before their travel date will get a
+cheaper ticket than if they booked the night before.
+4. For simplicity’s sake, users can only make a booking for one traveler at a time.
+5. After the user has confirmed their booking, they need to make a payment. The airline
+has partnered up with Stripe for Credit Card processing.
+a. You will need to make a test Stripe account
+b. You will need to use Laravel Cashier
+c. You can use the simple Stripe Checkout flow (so users are redirected to Stripe’s
+page to pay, and then redirected back)
+6. Once a user has completed their payment, they are returned back to your app (from
+Stripe), and you need to give them a confirmation number, and send them an email
+confirming that their booking is complete.
+7. For simplicity’s sake, there is no login system required, but users can see their basic
+booking details by providing their booking reference ID and their last name.
+a. Hint: use a separate database column to store a booking reference ID, and don’t
+just use the primary ID of the tabl
